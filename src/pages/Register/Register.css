@@ -1,0 +1,18 @@
+/* src/pages/Register/Register.css */
+
+.register-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border-radius: 8px;
+  }
+  
+  .register-container h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  

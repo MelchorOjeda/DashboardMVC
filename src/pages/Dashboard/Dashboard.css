@@ -1,0 +1,21 @@
+.dashboard {
+    display: flex; /* Para que Sidebar y contenido estén en la misma fila */
+  }
+  
+  .dashboard-content {
+    flex: 1;
+    padding: 2rem;
+    background-color: var(--secondary-color);
+    color: var(--dark-color);
+  }
+  
+  .dashboard-content h1 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 1rem;       
+  }
+  

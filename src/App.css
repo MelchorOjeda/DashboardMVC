@@ -1,0 +1,15 @@
+:root {
+  --primary-color: #f1d989;   
+  --dark-color: #3e3932;
+  --accent-color: #0fbab7;
+  --text-color: #000c0c;
+  --secondary-color: #e2e3a9;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: var(--secondary-color);
+  color: var(--dark-color);
+}

@@ -1,0 +1,27 @@
+/* FormLogin.css (o Input.css, como prefieras) */
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  
+  .input-group label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--dark-color);
+  }
+
+  .input-group input {
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 1rem;
+    border: 2px solid var(--accent-color);
+    border-radius: 4px;
+    outline: none;
+  }
+
+  .input-group input:focus {
+    border-color: var(--dark-color); 
+  }
+  
