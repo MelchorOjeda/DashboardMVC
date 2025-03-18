@@ -1,21 +1,38 @@
-.dashboard {
-    display: flex; /* Para que Sidebar y contenido estén en la misma fila */
-  }
-  
-  .dashboard-content {
-    flex: 1;
-    padding: 2rem;
-    background-color: var(--secondary-color);
-    color: var(--dark-color);
-  }
-  
-  .dashboard-content h1 {
-    margin-bottom: 1.5rem;
-  }
-  
-  .cards-container {
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 1rem;       
-  }
-  
+.dashboard-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  background-image: url('../../assets/images/FondoDashboard2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--text-color);
+  overflow: hidden; /* evita scroll inesperado */
+}
+
+.dashboard-main-content {
+  flex-grow: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(6px);
+  overflow-y: auto; 
+}
+
+.dashboard-main-content h1 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+.dashboard-map-cards {
+  display: flex;
+  gap: 2rem;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  flex: 1;
+}

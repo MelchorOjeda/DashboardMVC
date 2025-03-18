@@ -1,15 +1,16 @@
 :root {
-  --primary-color: #f1d989;   
-  --dark-color: #3e3932;
-  --accent-color: #0fbab7;
-  --text-color: #000c0c;
-  --secondary-color: #e2e3a9;
+  --card-bg-color: rgba(255, 255, 255, 0.15);
+  --text-color: #ffffff;
+  --accent-color: #ff4acd; 
+  --dark-color: #0f0e17; 
+  --primary-color: #ffffff;   
+  --secondary-color: #cccccc; 
 }
 
 html, body {
   margin: 0;
   padding: 0;
+  background-color: #000;
+  color: var(--text-color);
   font-family: 'Arial', sans-serif;
-  background-color: var(--secondary-color);
-  color: var(--dark-color);
 }

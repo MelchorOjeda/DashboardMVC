@@ -1,11 +1,54 @@
 .form-register {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .error-message {
-    color: red;
-    margin-bottom: 0.5rem;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
+
+.form-register h2 {
+  text-align: center;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.error-message {
+  color: #ff7272;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.form-register .input-group label {
+  color: var(--text-color);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.form-register .custom-input {
+  padding: 0.6rem;
+  border-radius: 4px;
+  border: 2px solid var(--accent-color);
+  background: transparent;
+  color: var(--text-color);
+  font-size: 1rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.form-register .custom-input:focus {
+  border-color: var(--text-color);
+}
+
+.form-register button {
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-register button:hover {
+  background-color: #e33abc;
+}

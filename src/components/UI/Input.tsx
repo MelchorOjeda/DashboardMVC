@@ -9,8 +9,8 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const Input: React.FC<InputProps> = ({
   label,
-  containerClassName,
-  inputClassName,
+  containerClassName = 'input-group', 
+  inputClassName = 'custom-input',    
   ...props
 }) => {
   return (

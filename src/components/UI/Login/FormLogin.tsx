@@ -30,22 +30,21 @@ const FormLogin: React.FC = () => {
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 
       <Input
-        className="login-input"
         label="Email:"
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="correo@ejemplo.com"
-      />
+        />
 
-      <Input
-        className="login-input"
+        <Input
         label="Contraseña:"
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="********"
-      />
+        />
+
 
       <Button
         className="login-button"
