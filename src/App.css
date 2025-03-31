@@ -1,6 +1,6 @@
 :root {
   --card-bg-color: rgba(255, 255, 255, 0.15);
-  --card-login-bg-color: rgba(55, 12, 50, 0.267);
+  --card-login-bg-color: rgba(55, 12, 50, 0.618);
   --text-color: #ffffff;
   --accent-color: #ff4acd; 
   --dark-color: #0f0e17; 
@@ -14,4 +14,7 @@ html, body {
   background-color: #000;
   color: var(--text-color);
   font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+  
 }

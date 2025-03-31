@@ -20,12 +20,12 @@ const GraficoTemperatura = ({ labels, data }: { labels: string[]; data: number[]
       {
         label: 'Temperatura (°C)',
         data,
-        backgroundColor: '#E91E63',
+        backgroundColor: '#1fb47b',
       },
     ],
   };
 
-  return <Bar data={chartData} options={{ responsive: true, plugins: { title: { display: true, text: 'Temperatura', color: '#fff' } } }} />;
+  return <Bar data={chartData} options={{ responsive: true, plugins: { title: { display: true, text: 'Temperatura en el ambiente', color: '#fff' } } }} />;
 };
 
 export default GraficoTemperatura;

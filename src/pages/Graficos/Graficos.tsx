@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Sensores } from '../../interfaces/SensorData';
 import Sidebar from '../../components/UI/Dashboard/Sidebar/Sidebar';
 import './Graficos.css';
+import Footer from '../../components/UI/Footer/Footer';
 
 const Graficos: React.FC = () => {
   const [historico, setHistorico] = useState<Sensores[]>([]);
@@ -167,7 +168,7 @@ const Graficos: React.FC = () => {
     <div className="graficos-dashboard">
       <Sidebar />
       <main className="graficos-container">
-        <h1>Estadísticas de Sensores</h1>
+        <h1>Estadística general de Sensores</h1>
 
         {/* Selector de intervalo */}
         <div className="intervalo-selector">
@@ -186,13 +187,14 @@ const Graficos: React.FC = () => {
           <div className="grafico-box">
             <GraficoSol labels={labels} data={intervalo === 'horas' ? horasData : solData} />
           </div>
-          <div className="grafico-box">
+          <div className="grafico-box grafico-temperatura">
             <GraficoTemperatura labels={labels} data={intervalo === 'horas' ? horasData : temperaturaData} />
           </div>
           <div className="grafico-box">
             <GraficoHumedad labels={labels} data={intervalo === 'horas' ? horasData : humedadData} />
           </div>
         </div>
+    
       </main>
     </div>
   );

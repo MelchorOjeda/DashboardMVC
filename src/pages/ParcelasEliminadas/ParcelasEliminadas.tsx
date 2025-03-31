@@ -3,6 +3,7 @@ import { obtenerParcelasInactivas } from '../../services/sensorService';
 import { Parcela } from '../../interfaces/SensorData';
 import Sidebar from '../../components/UI/Dashboard/Sidebar/Sidebar';
 import './ParcelasEliminadas.css';
+import Footer from '../../components/UI/Footer/Footer';
 
 const ParcelasEliminadas: React.FC = () => {
   const [parcelas, setParcelas] = useState<Parcela[]>([]);
@@ -33,6 +34,7 @@ const ParcelasEliminadas: React.FC = () => {
             ))}
           </div>
         )}
+        <Footer />
       </main>
     </div>
   );

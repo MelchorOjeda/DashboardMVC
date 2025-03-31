@@ -26,7 +26,48 @@ const GraficoHumedad = ({ labels, data }: { labels: string[]; data: number[] }) 
     ],
   };
 
-  return <Radar data={chartData} options={{ responsive: true, plugins: { title: { display: true, text: 'Humedad', color: '#fff' } } }} />;
+    const options = {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Temperatura',
+        color: '#fff', // Título en blanco
+        font: {
+          size: 18, // Tamaño de fuente más grande
+          weight: 'bold',
+        },
+      },
+      legend: {
+        labels: {
+          color: '#fff', // Color de las etiquetas de la leyenda
+          font: {
+            size: 14,
+          },
+        },
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: '#fff', // Texto en eje X en blanco
+          font: {
+            size: 12,
+          },
+        },
+      },
+      y: {
+        ticks: {
+          color: '#fff', // Texto en eje Y en blanco
+          font: {
+            size: 12,
+          },
+        },
+      },
+    },
+  };
+
+  return <Radar data={chartData} options={{ responsive: true, plugins: { title: { display: true, text: 'Humedad en el aire', color: '#fff' } } }} />;
 };
 
 export default GraficoHumedad;

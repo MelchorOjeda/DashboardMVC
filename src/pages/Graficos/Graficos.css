@@ -1,13 +1,15 @@
 .graficos-dashboard {
   display: flex;
   height: 100vh;
-  background-image: url('../../assets/images/FondoDashboard2.jpg'); /* Fondo original */
+  background-image: url('../../assets/images/FondoGeneral.jpg'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   color: #fff;
-  overflow-x: hidden; /* Evitar scroll lateral */
+  overflow-x: hidden;
+  width: 100vw; /* Asegurar que no haya desbordamiento */
 }
+
 
 .intervalo-selector {
   margin-bottom: 2rem;
@@ -21,10 +23,20 @@
   border-radius: 8px;
 }
 
+.chart-title {
+  background: rgb(20, 88, 137); /* Fondo oscuro semitransparente */
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  display: inline-block;
+}
+
+
 .intervalo-selector select {
   padding: 0.8rem;
   font-size: 1rem;
-  background-color: #444;
+  background-color: #bc25ab6c;
   color: #fff;
   border-radius: 4px;
   border: none;
@@ -39,37 +51,45 @@
   flex: 1;
   padding: 3rem;
   overflow-y: auto;
+  overflow-x: hidden; /* Asegurar que no haya scroll horizontal */
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 100vw; /* Evitar que el contenido se expanda demasiado */
 }
+
 
 .graficos-container h1 {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-top: 0.7rem;
+  margin-bottom: 1rem;
   font-size: 2.5rem;
   font-weight: bold;
   color: #fff; /* Texto blanco */
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.8);
 }
 
 .graficos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Aumentar el tamaño mínimo de las cards */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Reduce el tamaño mínimo */
   gap: 3rem;
   width: 100%;
   padding: 0 1rem;
+  max-width: 100vw; /* Limita el ancho */
 }
 
 .grafico-box {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.596);
   border-radius: 15px;
   padding: 2rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(10px);
   color: #fff;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  height: 400px; /* Aumentar la altura de las cards */
+  align-items: center;
+  align-content: center;
+  height: auto;
+  width: auto;
 }
 
 .grafico-box:hover {
@@ -82,6 +102,10 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   width: 100%;
   height: 100%;
+}
+
+.grafico-temperatura{
+  height: 250px;
 }
 
 .grafico-box .chart-title {

@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Sidebar.css';
 
 const Sidebar: React.FC = () => {
   const navigate = useNavigate();
-  const [active, setActive] = useState('dashboard');
+  const location = useLocation(); // 🔥 Detecta la ruta actual
 
-  const handleNavigate = (route: string) => {
-    setActive(route);
-    navigate(`/${route}`);
+  const handleLogout = () => {
+    const confirmLogout = window.confirm('¿Estás seguro de que deseas cerrar sesión?'); // 🔥 Muestra mensaje de confirmación
+    if (confirmLogout) {
+      localStorage.removeItem('isLoggedIn'); // Elimina el estado de sesión
+      localStorage.removeItem('token'); // 🔥 Elimina el token de autenticación
+      navigate('/'); // Redirige a la página de inicio
+    }
   };
 
   return (
@@ -19,33 +23,24 @@ const Sidebar: React.FC = () => {
       <nav className="sidebar-nav">
         <ul>
           <li
-            className={active === 'dashboard' ? 'active' : ''}
-            onClick={() => handleNavigate('dashboard')}
+            className={location.pathname === '/dashboard' ? 'active' : ''}
+            onClick={() => navigate('/dashboard')}
           >
             Dashboard
           </li>
           <li
-            className={active === 'graficos' ? 'active' : ''}
-            onClick={() => handleNavigate('graficos')}
+            className={location.pathname === '/graficos' ? 'active' : ''}
+            onClick={() => navigate('/graficos')}
           >
             Gráficas
           </li>
           <li
-            className={active === 'eliminadas' ? 'active' : ''}
-            onClick={() => handleNavigate('eliminadas')}
+            className={location.pathname === '/eliminadas' ? 'active' : ''}
+            onClick={() => navigate('/eliminadas')}
           >
             Parcelas Eliminadas
           </li>
-          <li
-            className={active === 'salir' ? 'active' : ''}
-            onClick={() => {
-              setActive('salir');
-              navigate('/');
-              localStorage.removeItem('isLoggedIn');
-            }}
-          >
-            Salir
-          </li>
+          <li onClick={handleLogout}>Salir</li> {/* 🔥 Llama a la función de logout */}
         </ul>
       </nav>
     </aside>

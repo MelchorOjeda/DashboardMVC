@@ -14,6 +14,7 @@ const GraficoSol = ({ labels, data }: { labels: string[]; data: number[] }) => {
         }, []);
         
   
+
   const chartData = {
     labels,
     datasets: [
@@ -27,7 +28,7 @@ const GraficoSol = ({ labels, data }: { labels: string[]; data: number[] }) => {
     ],
   };
 
-  return <Line data={chartData} options={{ responsive: true, plugins: { title: { display: true, text: 'Sol', color: '#fff' } } }} />;
+  return <Line data={chartData} options={{ responsive: true, plugins: { title: { display: true, text: 'Intensidad del sol', color: '#fff' } } }} />;
 };
 
 export default GraficoSol;

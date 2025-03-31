@@ -26,7 +26,7 @@ const GraficoLluvia = ({ labels, data }: { labels: string[]; data: number[] }) =
     ],
   };
 
-  return <Line ref={chartRef as React.MutableRefObject<any>} data={chartData} options={{ responsive: true, plugins: { title: { display: true, text: 'Lluvia', color: '#fff' } } }} />;
+  return <Line ref={chartRef as React.MutableRefObject<any>} data={chartData} options={{ responsive: true, plugins: { title: { display: true, text: 'Nivel de lluvia', color: '#fff' } } }} />;
 };
 
 export default GraficoLluvia;
