@@ -8,14 +8,19 @@ import { ApiResponse } from '../../interfaces/SensorData';
 import './Dashboard.css';
 
 const Dashboard: React.FC = () => {
-  const [data, setData] = React.useState<ApiResponse | null>(null);
+  const [data, setData] = useState<ApiResponse | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     obtenerDatosSensores()
       .then(setData)
-      .catch(console.error);
+      .catch(err => {
+        console.error(err);
+        setError('Error al cargar datos desde la API');
+      });
   }, []);
 
+  if (error) return <div className="error-message">{error}</div>;
   if (!data) return <div className="loading">Cargando datos IoT...</div>;
 
   return (
@@ -29,17 +34,15 @@ const Dashboard: React.FC = () => {
           <MapboxMap parcelas={data.parcelas} />
 
           <div className="cards-grid">
-            <InfoCard title="Temperatura" value={`${data.sensores.temperatura} °C`} />
-            <InfoCard title="Humedad" value={`${data.sensores.humedad}%`} />
-            <InfoCard title="Lluvia" value={`${data.sensores.lluvia} mm`} />
-            <InfoCard title="Intensidad del Sol" value={`${data.sensores.sol}%`} />
+            <InfoCard title="Temperatura" value={`${data.sensores.temperatura} °C 🌡️`} />
+            <InfoCard title="Humedad" value={`${data.sensores.humedad}% 💦`} />
+            <InfoCard title="Lluvia" value={`${data.sensores.lluvia} mm 🌥️`} />
+            <InfoCard title="Intensidad del Sol" value={`${data.sensores.sol}% ☀️`} />
           </div>
+
           <Footer />
         </div>
-
       </main>
-
-
     </div>
   );
 };

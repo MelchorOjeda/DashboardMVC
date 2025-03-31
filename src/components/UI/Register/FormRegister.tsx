@@ -1,119 +1,87 @@
-// src/components/UI/FormRegister.tsx
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Input } from '../index';
+import { registerUser } from '../../../services/usuarioService';
+import Input from '../Input';
 import './FormRegister.css';
 
-interface FormRegisterProps {
-}
+const securityQuestions = [
+  '¿Cuál es el nombre de tu primera mascota?',
+  '¿Cuál es tu comida favorita?',
+  '¿En qué ciudad naciste?',
+  '¿Cuál es el nombre de tu mejor amigo de la infancia?',
+  '¿Cuál es tu película favorita?',
+];
 
-const FormRegister: React.FC<FormRegisterProps> = () => {
+const FormRegister: React.FC = () => {
+  const [name, setName] = useState<string>('');
+  const [phone, setPhone] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [question, setQuestion] = useState<string>(securityQuestions[0]);
+  const [answer, setAnswer] = useState<string>('');
   const navigate = useNavigate();
 
-  const [name, setName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const [errorMessage, setErrorMessage] = useState('');
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (name.length > 50) {
-      setErrorMessage('El nombre no puede exceder 50 caracteres');
-      return;
-    }
-    if (lastName.length > 50) {
-      setErrorMessage('Los apellidos no pueden exceder 50 caracteres');
-      return;
-    }
-    if (phone.length > 14) {
-      setErrorMessage('El número de teléfono no puede exceder 14 dígitos');
-      return;
-    }
-    if (!/^\d+$/.test(phone)) {
-        setErrorMessage('El teléfono debe contener solo dígitos');
-        return;
-    }
 
     if (!email.includes('@')) {
       setErrorMessage('Ingresa un correo válido (debe contener @)');
       return;
     }
-    if (password.length < 8) {
-      setErrorMessage('La contraseña debe tener al menos 8 caracteres');
+
+    if (password.length < 8 || !/[A-Z]/.test(password) || !/\d/.test(password) || !/[@$!%*?&]/.test(password)) {
+      setErrorMessage('La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un símbolo');
       return;
     }
 
-    const existingUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+    try {
+      const newUser = {
+        correo: email,
+        contra: password,
+        pregunta: question,
+        respuesta: answer,
+        nombre: name,
+        telefono: phone,
+      };
 
-    const newUser = {
-      name,
-      lastName,
-      phone,
-      email,
-      password,
-    };
-
-    existingUsers.push(newUser);
-    localStorage.setItem('registeredUsers', JSON.stringify(existingUsers));
-
-    navigate('/');
+      await registerUser(newUser);
+      navigate('/');
+    } catch (error: any) {
+      setErrorMessage(error?.response?.data?.message || 'Error al registrar el usuario');
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="form-register">
       <h2>Registro de Usuario</h2>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <Input
-        label="Nombre:"
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Tu nombre"
-      />
-
-      <Input
-        label="Apellido(s):"
-        type="text"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-        placeholder="Tus apellidos"
-      />
-
-      <Input
-        label="Teléfono:"
-        type="tel"
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-        placeholder="Ej. 5551234567"
-        maxLength={14}  
-      />
-
-      <Input
-        label="Correo:"
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="correo@ejemplo.com"
-      />
-
-      <Input
-        label="Contraseña:"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="********"
-      />
-
-      <Button
-        label="Registrarse"
-        type="submit"
-      />
+      <div className="form-group">
+        <Input label="Nombre:" type="text" value={name} onChange={(e) => setName(e.target.value)} />
+      </div>
+      <div className="form-group">
+        <Input label="Teléfono:" type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
+      </div>
+      <div className="form-group">
+        <Input label="Correo:" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      </div>
+      <div className="form-group">
+        <label>Pregunta de Seguridad:</label>
+        <select value={question} onChange={(e) => setQuestion(e.target.value)}>
+          {securityQuestions.map((q, index) => (
+            <option key={index} value={q}>
+              {q}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="form-group">
+        <Input label="Respuesta:" type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} />
+      </div>
+      <div className="form-group">
+        <Input label="Contraseña:" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      </div>
+      <button type="submit">Registrar</button>
     </form>
   );
 };

@@ -18,17 +18,24 @@ const Sidebar: React.FC = () => {
       </div>
       <nav className="sidebar-nav">
         <ul>
-          <div className="dashboard">
           <li
             className={active === 'dashboard' ? 'active' : ''}
-            onClick={() => {
-              setActive('dashboard');
-              navigate('/dashboard');
-            }}
+            onClick={() => handleNavigate('dashboard')}
           >
             Dashboard
           </li>
-          </div>
+          <li
+            className={active === 'graficos' ? 'active' : ''}
+            onClick={() => handleNavigate('graficos')}
+          >
+            Gráficas
+          </li>
+          <li
+            className={active === 'eliminadas' ? 'active' : ''}
+            onClick={() => handleNavigate('eliminadas')}
+          >
+            Parcelas Eliminadas
+          </li>
           <li
             className={active === 'salir' ? 'active' : ''}
             onClick={() => {

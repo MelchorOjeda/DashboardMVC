@@ -1,56 +1,70 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Input } from '../index';
+import { getSecurityQuestion, loginUser, verifySecurityAnswer } from '../../../services/usuarioService';
+import Input from '../Input';
 import './FormLogin.css';
 
 const FormLogin: React.FC = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [securityQuestion, setSecurityQuestion] = useState<string | null>(null);
+  const [securityAnswer, setSecurityAnswer] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.includes('@')) {
-      setErrorMessage('Por favor ingresa un email válido');
-      return;
+    setErrorMessage('');
+    setLoading(true);
+
+    try {
+      if (!securityQuestion) {
+        // Paso 1: Obtener pregunta de seguridad tras validar correo y contraseña
+        await loginUser(email, password);
+        const pregunta = await getSecurityQuestion(email);
+        setSecurityQuestion(pregunta);
+      } else {
+        // Paso 2: Validar respuesta de seguridad y finalizar login
+        await verifySecurityAnswer(email, securityAnswer);
+        navigate('/dashboard');
+      }
+    } catch (error: any) {
+      setErrorMessage(
+        typeof error === 'string' ? error : error?.message || 'Ocurrió un error'
+      );
+    } finally {
+      setLoading(false);
     }
-    if (password.length < 8) {
-      setErrorMessage('La contraseña debe tener al menos 8 caracteres');
-      return;
-    }
-    localStorage.setItem('isLoggedIn', 'true');
-    navigate('/dashboard');
   };
 
   return (
     <form onSubmit={handleSubmit} className="form-login">
       <h2>Iniciar Sesión</h2>
-
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <Input
-        label="Email:"
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="correo@ejemplo.com"
-        />
-
-        <Input
-        label="Contraseña:"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="********"
-        />
-
-
-      <Button
-        className="login-button"
-        label="Ingresar"
-        type="submit"
-      />
+      {!securityQuestion ? (
+        <>
+          <div className="form-group">
+            <Input label="Email:" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          </div>
+          <div className="form-group">
+            <Input label="Contraseña:" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          </div>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Cargando...' : 'Siguiente'}
+          </button>
+        </>
+      ) : (
+        <>
+          <p className="security-question"><strong>Pregunta de Seguridad:</strong> {securityQuestion}</p>
+          <div className="form-group">
+            <Input label="Respuesta:" type="text" value={securityAnswer} onChange={(e) => setSecurityAnswer(e.target.value)} />
+          </div>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Verificando...' : 'Verificar'}
+          </button>
+        </>
+      )}
     </form>
   );
 };

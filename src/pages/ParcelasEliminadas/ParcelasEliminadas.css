@@ -1,0 +1,51 @@
+.eliminadas-dashboard {
+    display: flex;
+    height: 100vh;
+    background-image: url('../../assets/images/FondoDashboard2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+  }
+  
+  .eliminadas-container {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    backdrop-filter: blur(6px);
+  }
+  
+  .eliminadas-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  }
+  
+  .eliminadas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .parcela-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    transition: transform 0.2s ease;
+  }
+  
+  .parcela-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  }
+  
+  .parcela-card h2 {
+    margin-bottom: 0.6rem;
+    color: #ff4acd;
+    font-size: 1.3rem;
+  }
+  

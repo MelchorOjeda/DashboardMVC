@@ -1,53 +1,42 @@
-/* src/pages/Login/Login.css */
-
-/* Contenedor que ocupa toda la pantalla */
+/* Login.css */
 .login-wrapper {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: url('../../assets/images/FondoLogin.jpg') no-repeat center center;
-    background-size: cover;
-    
-    background-attachment: fixed;
-  
-    padding: 1rem;
-    box-sizing: border-box;
-  }
-  
-  .login-card {
-    background-color: var(--card-bg-color); 
-    border-radius: 12px;
-    padding: 2rem;
-    width: 100%;
-    max-width: 420px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    gap: 1rem;
-  }
-  
-  .login-image img {
-    max-width: 120px;
-    display: block;
-    margin: 0 auto;
-  }
-  
-  /* Enlace de registro */
-  .register-link p {
-    text-align: center;
-    margin-top: 1rem;
-    font-size: 0.95rem;
-  }
-  
-  .register-link a {
-    color: var(--accent-color);
-    font-weight: 600;
-    text-decoration: underline;
-  }
-  .register-link a:hover {
-    text-decoration: none;
-  }
-  
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../../assets/images/FondoLogin.jpg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.login-card {
+  background-color: var(--card-login-bg-color);
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.register-link p {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: var(--text-color, #333);
+}
+
+.register-link a {
+  color: var(--accent-color, #6C63FF);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.register-link a:hover {
+  text-decoration: none;
+}
